@@ -1,21 +1,20 @@
 import React from "react";
-import Card from "./Card";
 
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "student", href: "/student", current: true },
-  { name: "Applied job", href: "/appliedjob", current: false },
-  
+  { name: "company", href: "/camp", current: true },
+  { name: "job post", href: "/jobpost", current: false },
+  { name: " posted job ", href: "/postedjob", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function Home() {
+export function Comp() {
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -64,8 +63,6 @@ export function Home() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  
-
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
@@ -106,7 +103,7 @@ export function Home() {
                         <Menu.Item>
                           {({ active }) => (
                             <a
-                              href="/"
+                              href="login"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -146,8 +143,16 @@ export function Home() {
           </>
         )}
       </Disclosure>
-      <Card />
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+  <span className="text-3xl mb-8">Student Applieds Job</span>
+  <img
+    src="https://campus-app-1c4b8.web.app/static/media/notAvailable.849c1c5632b278367acb.jpg"
+    alt="notAvailable"
+    className="w-2/3  md:w-1/3  "
+  />
+</div>  
+
     </>
   );
 }
-export default Home;
+export default Comp;

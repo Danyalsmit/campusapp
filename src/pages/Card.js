@@ -1,12 +1,10 @@
 const products = [
   {
     id: 1,
-    name: "Basic Tee",
     href: "#",
     imageSrc:
       "https://recruiteze.com/wp-content/uploads/2016/11/bigstock-Jobs-84219101.jpg",
     imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
     color: "Black",
   },
 ];
