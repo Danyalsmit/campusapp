@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 function Signup() {
   const [name, setName] = useState("");
@@ -9,8 +11,12 @@ function Signup() {
   const [category, setCategory] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const navigate = useNavigate();
-
+ 
   const handleFormSubmit = () => {
+    if (!name || !email || !password || !category || !selectedOption) {
+      toast.error("All fields are required");
+      return;
+    }
     const userData = {
       name: name,
       email: email,
@@ -18,7 +24,8 @@ function Signup() {
       category: category,
       option: selectedOption,
     };
-
+    
+  
     axios
       .post("http://localhost:8000/api/users/signup", userData)
       .then((res) => {
@@ -29,18 +36,28 @@ function Signup() {
       .catch((error) => {
         console.log("Signup failed:", error);
       });
+      
   };
+  
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Signup to your account
-        </h2>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm bg-indigo-530 p-4">
+        <div className="flex items-center">
+          <svg
+            className=" mt-9 h-10 w-auto text-indigo-700"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <h2 className="ml-11 mt-10 px-2 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Register foam
+          </h2>
+        </div>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -48,11 +65,11 @@ function Signup() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className=" mb-2 block text-sm font-medium leading-6 text-gray-900"
             >
               Full Name
             </label>
-            <div className="mt-2">
+            <div className="mt-2 ">
               <input
                 id="name"
                 name="name"
@@ -62,7 +79,7 @@ function Signup() {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className=" px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -83,7 +100,7 @@ function Signup() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className=" px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -104,7 +121,7 @@ function Signup() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className=" px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -164,7 +181,7 @@ function Signup() {
         <div>
           <h2 className="text-black">
             Have an account{" "}
-            <Link className="text-black-500 font-bold" to="/login">
+            <Link className="text-black-500 font-bold" to="/">
               Login
             </Link>
           </h2>

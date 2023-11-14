@@ -1,21 +1,25 @@
 import React from "react";
-import Card from "./Card";
+
 
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useLocation } from "react-router-dom";
+
 
 const navigation = [
-  { name: "student", href: "/student", current: true },
-  { name: "Applied job", href: "/appliedjob", current: false },
-  
+  { name: "company", href: "/camp", current: true },
+  { name: "job post", href: "/jobpost", current: true },
+  { name: " posted job ", href: "/postedjob", current: false },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function Home() {
+export function Nav() {
+  const location = useLocation();
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -44,28 +48,25 @@ export function Home() {
                     />
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
-                    <div className="flex space-x-4">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
-                          )}
-                          aria-current={item.current ? "page" : undefined}
-                        >
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
+                  <div className="flex space-x-4">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        className={classNames(
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
                   </div>
                 </div>
+                </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  
-
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">
                     <div>
@@ -146,8 +147,8 @@ export function Home() {
           </>
         )}
       </Disclosure>
-      <Card />
-    </>
+      </>
   );
 }
-export default Home;
+export default Nav;
+

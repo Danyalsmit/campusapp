@@ -13,43 +13,57 @@ function Login() {
       password: password,
     };
     axios
-    .post("http://localhost:8000/api/users/login", data)
-    .then((res) => {
-      console.log("Login successful!");
-      const userRole = res.data.option; 
-      if (userRole === "Student") {
-        navigate("/student"); 
-      } else if (userRole === "Company") {
-        navigate("/camp"); 
-      } else {
-      
-      }
-    })
-    .catch((error) => {
-      console.log("Login failed:", error);
-    });
-};
+      .post("http://localhost:8000/api/users/login", data)
+      .then(async (res) => {
+        console.log("Login successful!");
+        const Role = res.data;
+        console.log("daaa", Role);
+        const id = res.data?._id;
+        console.log({ id });
+
+        const userRole = res.data.option;
+        if (userRole === "Student") {
+          await localStorage.setItem("UserId", JSON.stringify(id));
+          navigate("/student");
+        } else if (userRole === "Company") {
+          await localStorage.setItem("UserId", JSON.stringify(id));
+          navigate("/camp");
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.log("Login failed:", error);
+      });
+  };
 
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            login in to your account
-          </h2>
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm bg-indigo-530 p-4">
+          <div className="flex items-center">
+            <svg
+              className=" mt-9 h-10 w-auto text-indigo-700"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <h2 className="ml-11 mt-10 px-2 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              Login to your account
+            </h2>
+          </div>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <div className="space-y-6" >
+          <div className="space-y-6">
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="px-2 block text-sm font-medium leading-6 text-gray-900"
               >
                 Email address
               </label>
@@ -58,12 +72,12 @@ function Login() {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="   Email"
+                  placeholder="Email"
                   autoComplete=" email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className=" px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -76,14 +90,7 @@ function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
+               
               </div>
               <div className="mt-2">
                 <input
@@ -95,7 +102,7 @@ function Login() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="px-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>

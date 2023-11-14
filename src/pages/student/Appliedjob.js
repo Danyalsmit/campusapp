@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Layout from "./layout/Layout";
+import React from "react";
+import Out2 from "../student/layout2/Out2"
 
-function Postedjob() {
+function Appliedjob() {
   return (
     <>
-    <Layout>
+     <Out2>
     <div className="p-8">
       <div className="bg-white rounded shadow-md">
         <div className="overflow-x-auto">
@@ -22,7 +22,7 @@ function Postedjob() {
             <tbody>
               <tr className="bg-white text-black border-t">
                 <td className="px-4 py-2">1</td>
-                <td className="px-4 py-2">Raheem Khan</td>
+                <td className="px-4 py-2"> Khan</td>
                 <td className="px-4 py-2">Matric</td>
                 <td className="px-4 py-2">Hard Work</td>
                 <td className="px-4 py-2">Fresher</td>
@@ -33,10 +33,9 @@ function Postedjob() {
         </div>
       </div>
     </div>
-    </Layout>
-
+    </Out2>
     </>
   );
 }
 
-export default Postedjob;
+export default Appliedjob;

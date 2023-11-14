@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Layout from "./layout/Layout";
 
 function Jobpost() {
   const [jobTitle, setJobTitle] = useState("");
@@ -11,7 +12,7 @@ function Jobpost() {
 
   const jobSubmit = () => {
     const newjob = {
-      JobTitle: jobTitle,
+      JobCategory	: jobTitle,
       Experience: experience,
       Education: education,
       StreetAddress: address,
@@ -30,6 +31,8 @@ function Jobpost() {
   };
 
   return (
+    <>
+    <Layout>
     <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
         <div className="text-center">
@@ -121,6 +124,8 @@ function Jobpost() {
         </div>
       </div>
     </div>
+    </Layout>
+    </>
   );
 }
 
