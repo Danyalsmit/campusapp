@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2"; 
+
 
 
 function Signup() {
@@ -13,9 +14,14 @@ function Signup() {
   const navigate = useNavigate();
  
   const handleFormSubmit = () => {
-    if (!name || !email || !password || !category || !selectedOption) {
-      toast.error("All fields are required");
-      return;
+    if (!name || !email || !password  || !selectedOption) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'All fields are required!',
+      });
+      
+      return ; 
     }
     const userData = {
       name: name,
@@ -29,8 +35,12 @@ function Signup() {
     axios
       .post("http://localhost:8000/api/users/signup", userData)
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Signup Successful!',
+          text: 'Your account has been created.',
+        });
         console.log("Signup successful!");
-        console.log("Response data:", res.data);
         navigate("/");
       })
       .catch((error) => {
@@ -163,7 +173,7 @@ function Signup() {
                   <option value="">Experience</option>
                   <option value="Senior">Senior</option>
                   <option value="Junior">Junior</option>
-                  <option value="Freshman">Freshman</option>
+                  <option value="Freshman">Fresher</option>
                 </select>
               </div>
             </div>

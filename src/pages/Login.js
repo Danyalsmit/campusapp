@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,13 +14,12 @@ function Login() {
       password: password,
     };
     axios
-      .post("http://localhost:8000/api/users/login", data)
+      .post("https://fair-cyan-abalone-gown.cyclic.app/api/users/login", data)
       .then(async (res) => {
         console.log("Login successful!");
         const Role = res.data;
-        console.log("daaa", Role);
+        console.log("role", Role);
         const id = res.data?._id;
-        console.log({ id });
 
         const userRole = res.data.option;
         if (userRole === "Student") {
@@ -28,11 +28,24 @@ function Login() {
         } else if (userRole === "Company") {
           await localStorage.setItem("UserId", JSON.stringify(id));
           navigate("/camp");
+        } else if (userRole === "Admin") {
+          await localStorage.setItem("UserId", JSON.stringify(id));
+          navigate("/admin");
         } else {
+          navigate("/");
         }
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful!",
+          text: "Welcome back!",
+        });
       })
       .catch((error) => {
-        console.log("Login failed:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: "Invalid email or password.",
+        });
       });
   };
 
@@ -90,7 +103,6 @@ function Login() {
                 >
                   Password
                 </label>
-               
               </div>
               <div className="mt-2">
                 <input

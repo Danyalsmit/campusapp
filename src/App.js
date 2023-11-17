@@ -11,6 +11,8 @@ import Postedjob from "./pages/company/Postedjob";
 import Appliedjob from "./pages/student/Appliedjob.js";
 import Model from "./pages/Model.js";
 import ProfileModal from "./pages/Profile.js";
+import Admin from "./pages/admin/Admin.js";
+
 function App() {
   return (
     <>
@@ -22,6 +24,9 @@ function App() {
 
           <Route path="/camp" element={<Camp />} />
           <Route path="/profile" element={<ProfileModal />} />
+
+          <Route path="/admin" element={< Admin/>} />
+
 
 
           <Route path="/student" element={<Home />} />
