@@ -8,7 +8,7 @@ function Card({ category }) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/jobpost/jobs")
+      .get("https://fair-cyan-abalone-gown.cyclic.app/api/jobpost/jobs")
       .then((res) => {
         console.log("Fetch successful!");
 

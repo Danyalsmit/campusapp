@@ -10,7 +10,7 @@ function Admin() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/users/admin`)
+      .get(`https://fair-cyan-abalone-gown.cyclic.app/api/users/admin`)
       .then((res) => {
         console.log("Fetch successful!");
         console.log("User data:", res.data.users);

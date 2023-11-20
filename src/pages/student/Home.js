@@ -9,7 +9,7 @@ export function Home() {
   useEffect(() => {
     const id1 = JSON.parse(localStorage.getItem("UserId"));
     axios
-      .get(`http://localhost:8000/api/users/login/${id1}`)
+      .get(`https://fair-cyan-abalone-gown.cyclic.app/api/users/login/${id1}`)
       .then((res) => {
         console.log("Fetch successful!");
         setUserCateg(res.data.user[0].category);

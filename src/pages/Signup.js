@@ -33,7 +33,7 @@ function Signup() {
     
   
     axios
-      .post("http://localhost:8000/api/users/signup", userData)
+      .post("https://fair-cyan-abalone-gown.cyclic.app/api/users/signup", userData)
       .then((res) => {
         Swal.fire({
           icon: 'success',
