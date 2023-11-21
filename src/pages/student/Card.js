@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 function Card({ category }) {
   const [jobs, setJobs] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
+
+  const handleApply = () => {
+    Swal.fire({
+      title: "You have successfully applied for this job!",
+      text: "Your application has been submitted.",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
 
   useEffect(() => {
     axios
@@ -19,6 +29,7 @@ function Card({ category }) {
         setJobs(filteredJobs);
       })
       .catch((error) => {
+      
         console.error("Fetch failed:", error);
       });
   }, [category]);
@@ -38,7 +49,7 @@ function Card({ category }) {
       <div className="flex flex-wrap justify-around">
         {jobs.map((item, index) => (
           <div key={index} className="flex flex-col mb-4">
-            <div className="bg-white rounded-lg shadow-md p-4">
+            <div className="bg-white rounded-lg shadow-md mt-8 p-4">
               <img
                 src="https://campus-app-1c4b8.web.app/static/media/ApplyImage.f714aab6dc389987e939.png"
                 alt=""
@@ -56,7 +67,7 @@ function Card({ category }) {
                 Job Detail
               </button>
               <button
-               
+                onClick={handleApply}
                 className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
               >
                 Apply
