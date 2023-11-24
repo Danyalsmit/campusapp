@@ -49,7 +49,7 @@ function Card({ category }) {
     };
 
     axios
-      .post("http://localhost:8000/api/apply/apply", jobData)
+      .post("https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply", jobData)
       .then((res) => {
         console.log("Applied successful!");
         navigate("/appliedjob");
