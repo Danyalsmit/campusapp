@@ -16,6 +16,7 @@ function Login() {
     axios
       .post("https://fair-cyan-abalone-gown.cyclic.app/api/users/login", data)
       .then(async (res) => {
+        console.log("resres",res)
         console.log("Login successful!");
         const Role = res.data;
         console.log("role", Role);

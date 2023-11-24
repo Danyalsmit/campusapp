@@ -18,8 +18,19 @@ function Jobpost() {
       StreetAddress: address,
     };
 
+  // Retrieve existing jobs from localStorage
+  const existingJobs = JSON.parse(localStorage.getItem('jobs')) || [];
+
+  // Append the new job to the existing jobs array
+  const updatedJobs = [...existingJobs, newjob];
+
+  // Store the updated jobs array in localStorage
+  localStorage.setItem('jobs', JSON.stringify(updatedJobs));
+
+  console.log("newjob", newjob);
+
     axios
-      .post("http://localhost:8000/api/jobpost/job", newjob)
+      .post("https://fair-cyan-abalone-gown.cyclic.app/api/jobpost/job", newjob)
       .then((res) => {
         console.log("Job post successful!");
         console.log("Response data:", res.data);

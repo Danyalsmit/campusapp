@@ -35,21 +35,7 @@ function Admin() {
   }, []);
 
   
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8000/api/jobpost/jobs")
-  //     .then((res) => {
-  //       console.log("Fetch successful!");
-  //       console.log("Jobs data:", res.data);
 
-  //       const data1 = res.data.jobs;
-
-  //       setJobs(data1);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Fetch failed:", error);
-  //     });
-  // }, []);
 
   return (
     <>
