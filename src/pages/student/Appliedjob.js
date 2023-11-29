@@ -11,7 +11,7 @@ function Appliedjob() {
     const jobid = JSON.parse(localStorage.getItem("UserId"));
 
     axios
-      .get(`https://fair-cyan-abalone-gown.cyclic.app/apply/apply/${jobid}`)
+      .get(`https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply/${jobid}`)
       .then((res) => {
         console.log("first,res",res)
         console.log("Fetch successful!");

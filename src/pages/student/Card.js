@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 
-function Card({ category }) {
+function Card({ category }) { 
   const [jobs, setJobs] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [appliedJobs, setAppliedJobs] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,50 +19,66 @@ function Card({ category }) {
           (elem) => elem.Experience === category
         );
         setJobs(filteredJobs);
-        const appliedJobsFromStorage = JSON.parse(localStorage.getItem("appliedJobs")) || [];
-        setAppliedJobs(appliedJobsFromStorage);
       })
       .catch((error) => {
         console.error("Fetch failed:", error);
       });
   }, [category]);
 
+  useEffect(() => {
+    const storedAppliedJobs =
+      JSON.parse(localStorage.getItem("appliedJobs")) || [];
+    setAppliedJobs(storedAppliedJobs);
+  }, []);
+
   const handleApply = (item) => {
     const userId = JSON.parse(localStorage.getItem("UserId"));
-    localStorage.setItem("jobId", JSON.stringify(item._id));
-    
-    const newAppliedJobs = [...appliedJobs, item._id];
-    setAppliedJobs(newAppliedJobs);
-
-    localStorage.setItem("appliedJobs", JSON.stringify(newAppliedJobs));
-
-
-    const jobData = {
-      userId: userId,
-      id: item._id,
-      category: item.JobCategory,
-      education: item.Education,
-      experience: item.Experience,
-      streetAddress: item.StreetAddress,
-    };
-
-    axios
-      .post("https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply", jobData)
-      .then((res) => {
-        console.log("Applied successful!");
-        navigate("/appliedjob");
-      })
-      .catch((error) => {
-        console.log("applied failed:", error);
+    const jobId = item._id; // Retrieve job ID directly from item
+  
+    if (!appliedJobs.includes(jobId)) {
+      const updatedAppliedJobs = [...appliedJobs, jobId];
+      localStorage.setItem("appliedJobs", JSON.stringify(updatedAppliedJobs));
+      setAppliedJobs(updatedAppliedJobs);
+  
+      const jobData = {
+        userId: userId,
+        id: item._id,
+        category: item.JobCategory,
+        education: item.Education,
+        experience: item.Experience,
+        streetAddress: item.StreetAddress,
+      };
+      
+      axios
+        .post("https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply", jobData)
+        .then((res) => {
+          console.log("Applied successful!");
+          Swal.fire({
+            title: "You have successfully applied for this job!",
+            text: "Your application has been submitted.",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        })
+        .catch((error) => {
+          console.log("Applied failed:", error);
+          Swal.fire({
+            title: "Application Failed",
+            text: "There was an error while applying for this job.",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+        });
+    } else {
+      Swal.fire({
+        title: "Already Applied",
+        text: "You have already applied for this job.",
+        icon: "warning",
+        confirmButtonText: "OK",
       });
-
-    Swal.fire({
-      title: "You have successfully applied for this job!",
-      text: "Your application has been submitted.",
-      icon: "success",
-      confirmButtonText: "OK",
-    });
+    }
   };
+  
 
   const openModal = (job) => {
     setSelectedJob(job);
@@ -101,12 +115,12 @@ function Card({ category }) {
                 </button>
 
                 <button
-                onClick={() => handleApply(item)}
-                className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-                disabled={appliedJobs.includes(item._id)}
-              >
-                {appliedJobs.includes(item._id) ? "Applied" : "Apply"}
-              </button>
+                  onClick={() => handleApply(item)}
+                  className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                  disabled={appliedJobs.includes(item._id)}
+                >
+                  {appliedJobs.includes(item._id) ? "Applied" : "Apply"}
+                </button>
               </div>
             </div>
           );
