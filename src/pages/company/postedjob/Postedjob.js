@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Layout from "./layout/Layout";
+import Layout from "../../../layout/Layout";
 
 function Postedjob() {
   const [jobData, setJobData] = useState([]);
 
   useEffect(() => {
     // Retrieve all jobs from localStorage
-    const storedJobs = JSON.parse(localStorage.getItem('jobs')) || [];
+    const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
     setJobData(storedJobs);
   }, []);
 

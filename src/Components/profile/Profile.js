@@ -1,5 +1,5 @@
 import React from "react";
-import Out2 from "./student/layout2/Out2";
+import Out2 from "../../pages/student/layout2/Out2";
 
 function ProfileModal() {
   return (

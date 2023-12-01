@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Table from "./Table";
-import Dashboard from "./Dashboard";
-import Way from "./Wayout";
+import Table from "../table/Table";
+import Dashboard from "../dashboard/Dashboard";
+import Way from "../wayout/Wayout";
 import axios from "axios";
 
 function Admin() {
@@ -33,9 +33,6 @@ function Admin() {
         console.error("Fetch failed:", error);
       });
   }, []);
-
-  
-
 
   return (
     <>

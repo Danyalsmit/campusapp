@@ -2,7 +2,7 @@ import React from "react";
 import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation ,useNavigate} from "react-router-dom";
 
 const navigation = [
   { name: "Admin", href: "/admin", current: true },
@@ -14,15 +14,28 @@ function classNames(...classes) {
 }
 
 export function Way() {
-  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    navigate("/");
+  };
 
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
-          
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <button
+              className="absolute right-0 flex items-right pb-2 pr-4 pt-2 bg-gray-900 text-white rounded-md px-2 py-2 mt-4 mb-4 text-sm font-medium"
+              style={{ marginRight: "20px", color: "white" }}
+              onClick={handleSignOut}
+             
+            >
+                Sign out
+            
+            </button>
+
+            <div className="mx-auto max-w-md px-2 sm:px-6 lg:px-8"style={{ marginLeft: "20px" }}>
               <div className="relative flex h-16 items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                   {/* Mobile menu button*/}
@@ -58,7 +71,6 @@ export function Way() {
                 </div>
               </div>
             </div>
-            
 
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
@@ -80,7 +92,6 @@ export function Way() {
                 ))}
               </div>
             </Disclosure.Panel>
-           
           </>
         )}
       </Disclosure>
@@ -89,13 +100,3 @@ export function Way() {
 }
 
 export default Way;
-
-<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-{/* Sign out button */}
-<Link
-  to="/"
-  className="bg-gray-800 rounded-full p-2 text-sm text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
->
-  Sign out
-</Link>
-</div>

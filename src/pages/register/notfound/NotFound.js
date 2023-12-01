@@ -4,9 +4,6 @@ import React from 'react'
 function NotFound() {
 
 
-//   const redirectToHome = () => {
-//     window.location.href = '/'; 
-//   };
     return (
       <>
         
