@@ -33,7 +33,7 @@ function Jobpost() {
     console.log("newjob", newjob);
 
     axios
-      .post("my-app/src/pages/student/applied/api/jobpost/job", newjob)
+      .post("https://fair-cyan-abalone-gown.cyclic.app/api/jobpost/job", newjob)
       .then((res) => {
         console.log("Job post successful!");
         console.log("Response data:", res.data);

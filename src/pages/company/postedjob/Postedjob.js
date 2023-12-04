@@ -10,7 +10,7 @@ function Postedjob() {
     const jobid = JSON.parse(localStorage.getItem("UserId"));
 
     axios
-      .get(`my-app/src/pages/student/applied/api/jobpost/job/${jobid}`)
+      .get(`https://fair-cyan-abalone-gown.cyclic.app/api/jobpost/job/${jobid}`)
       .then((res) => {
         console.log("first,res",res)
         console.log("Fetch successful!");
