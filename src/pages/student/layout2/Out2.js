@@ -1,5 +1,5 @@
 import React from 'react'
-import Bar from "../Bar"
+import Bar from "../bar/Bar"
 
 function Out2({ children }) {
   return (

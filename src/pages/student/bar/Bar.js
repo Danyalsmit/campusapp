@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
-import ProfileModal from "../../Components/profile/Profile.js";
+import ProfileModal from "../../../Components/profile/Profile.js";
 
 const navigation = [
   { name: "student", href: "/student", current: true },

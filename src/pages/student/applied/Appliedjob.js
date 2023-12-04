@@ -1,4 +1,4 @@
-import Out2 from "../student/layout2/Out2";
+import Out2 from "../layout2/Out2";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 

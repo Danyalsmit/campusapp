@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../../layout/Layout";
+import axios from "axios";
+
 
 function Postedjob() {
   const [jobData, setJobData] = useState([]);
 
   useEffect(() => {
-    // Retrieve all jobs from localStorage
-    const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
-    setJobData(storedJobs);
+    const jobid = JSON.parse(localStorage.getItem("UserId"));
+
+    axios
+      .get(`my-app/src/pages/student/applied/api/jobpost/job/${jobid}`)
+      .then((res) => {
+        console.log("first,res",res)
+        console.log("Fetch successful!");
+        setJobData(res.data.user);
+
+      })
+      .catch((error) => {
+        console.error("Fetch failed:", error);
+      });
   }, []);
+
 
   return (
     <Layout>

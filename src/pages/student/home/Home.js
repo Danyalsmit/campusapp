@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "./Card";
-import Out2 from "./layout2/Out2";
+import Card from "../card/Card";
+import Out2 from "../layout2/Out2";
 
 export function Home() {
   const [userCateg, setUserCateg] = useState();

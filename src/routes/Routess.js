@@ -2,12 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "../pages/register/signup/Signup.js";
 import Login from "../pages/register/login/Login.js";
-import Home from "../pages/student/Home.js";
+import Home from "../pages/student/home/Home.js";
 import NoTFound from "../pages/register/notfound/NotFound.js";
 import Camp from "../pages/company/camp/Camp.js";
 import Jobpost from "../pages/company/jobpost/Jobpost.js";
 import Postedjob from "../pages/company/postedjob/Postedjob.js";
-import Appliedjob from "../pages/student/Appliedjob.js";
+import Appliedjob from "../pages/student/applied/Appliedjob.js";
 import ProfileModal from "../Components/profile/Profile.js";
 import Admin from "../pages/admin/admiin/Admin.js";
 

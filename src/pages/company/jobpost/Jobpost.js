@@ -9,9 +9,12 @@ function Jobpost() {
   const [education, setEducation] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
+ const jobid = JSON.parse(localStorage.getItem("UserId"));
+
 
   const jobSubmit = () => {
     const newjob = {
+      userId: jobid,
       JobCategory: jobTitle,
       Experience: experience,
       Education: education,
@@ -30,7 +33,7 @@ function Jobpost() {
     console.log("newjob", newjob);
 
     axios
-      .post("https://fair-cyan-abalone-gown.cyclic.app/api/jobpost/job", newjob)
+      .post("my-app/src/pages/student/applied/api/jobpost/job", newjob)
       .then((res) => {
         console.log("Job post successful!");
         console.log("Response data:", res.data);
