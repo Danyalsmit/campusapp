@@ -5,6 +5,7 @@ import axios from "axios";
 
 function Postedjob() {
   const [jobData, setJobData] = useState([]);
+  console.log(jobData,"jobDatajobDatavv")
 
   useEffect(() => {
     const jobid = JSON.parse(localStorage.getItem("UserId"));
