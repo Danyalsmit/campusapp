@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import Button from "../../../Components/button/Button";
 function Signup() {
   const navigate = useNavigate();
   const validationSchema = Yup.object().shape({
@@ -183,15 +183,17 @@ function Signup() {
                   </div>
                 )}
               </div>
-              {/* Submit button */}
+              
               <div>
-                <button
-                  type="submit"
-                  disabled={formikProps.isSubmitting}
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  {formikProps.isSubmitting ? "Signing Up..." : "Sign Up"}
-                </button>
+                <Button
+                type={"submit"}
+                disabled={formikProps.isSubmitting}
+                className={"flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"}
+                value={formikProps.isSubmitting ? "Signing Up..." : "Sign Up"}
+                />
+
+                
+               
               </div>
             </Form>
           )}

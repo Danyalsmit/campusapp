@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Button from "../../../Components/button/Button";
 
 function Login() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Login() {
   const handleSubmit = async (values) => {
     console.log(values,"234567890")
     try {
-      const res = await axios.post("http://localhost:8000/api/users/login", values); 
+      const res = await axios.post("https://fair-cyan-abalone-gown.cyclic.app/api/users/login", values); 
       console.log("resres", res);
       console.log("Login successful!");
 
@@ -118,13 +119,11 @@ function Login() {
             </div>
 
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Log in
-              </button>
-
+              <Button 
+              type={"Submit"}
+              className={"flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"}
+              value =  "Log in"
+              />
               <div>
                 <h2 className="text-black">
                   Do You Want To Create Account?
@@ -144,4 +143,3 @@ function Login() {
 
 export default Login;
 
-// .post("https://fair-cyan-abalone-gown.cyclic.app/api/users/login", data)

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Layout from "../../../layout/Layout";
+import Button from "../../../Components/button/Button";
+import Input from "../../../Components/input/Input";
+import Select from "../../../Components/select/Select";
 
 function Jobpost() {
   const [jobTitle, setJobTitle] = useState("");
@@ -9,8 +12,7 @@ function Jobpost() {
   const [education, setEducation] = useState("");
   const [address, setAddress] = useState("");
   const navigate = useNavigate();
- const jobid = JSON.parse(localStorage.getItem("UserId"));
-
+  const jobid = JSON.parse(localStorage.getItem("UserId"));
 
   const jobSubmit = () => {
     const newjob = {
@@ -21,13 +23,10 @@ function Jobpost() {
       StreetAddress: address,
     };
 
-    // Retrieve existing jobs from localStorage
     const existingJobs = JSON.parse(localStorage.getItem("jobs")) || [];
 
-    // Append the new job to the existing jobs array
     const updatedJobs = [...existingJobs, newjob];
 
-    // Store the updated jobs array in localStorage
     localStorage.setItem("jobs", JSON.stringify(updatedJobs));
 
     console.log("newjob", newjob);
@@ -63,14 +62,14 @@ function Jobpost() {
                   Job Title
                 </label>
                 <div className="mt-1">
-                  <input
-                    type="text"
-                    name="Job Title"
-                    id="Job Title"
-                    autoComplete="given-name"
+                  <Input
+                    type={"text"}
+                    name={"Job Title"}
+                    id={"Job Title"}
+                    autoComplete={"given-name"}
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
-                    className="py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"
+                    className={"py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"}
                   />
                 </div>
               </div>
@@ -82,20 +81,21 @@ function Jobpost() {
                   Education
                 </label>
                 <div className="mt-1">
-                  <select
-                    id="Education"
-                    name="Education"
-                    autoComplete="country-name"
+                  <Select
+                    id={"Education"}
+                    name={"Education"}
+                    autoComplete={"country-name"}
                     value={education}
                     onChange={(e) => setEducation(e.target.value)}
-                    className="py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"
-                  >
+                    className={"py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"}
+                    >
                     <option></option>
                     <option>Matric</option>
                     <option>Enter</option>
                     <option>Graduations</option>
-                    <option>Masters</option>
-                  </select>
+                    <option>Masters</option>"
+                     
+                  </Select>
                 </div>
               </div>
               <div>
@@ -106,19 +106,19 @@ function Jobpost() {
                   Experience
                 </label>
                 <div className="mt-1">
-                  <select
-                    id="Experience"
-                    name="Experience"
-                    autoComplete="country-name"
+                  <Select
+                    id={"Experience"}
+                    name={"Experience"}
+                    autoComplete={"country-name"}
                     value={experience}
                     onChange={(e) => setExperience(e.target.value)}
-                    className="py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"
+                    className={"py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"}
                   >
                     <option></option>
                     <option>Fresher</option>
                     <option>Junior</option>
                     <option>Senior</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
               <div>
@@ -129,25 +129,25 @@ function Jobpost() {
                   Street Address
                 </label>
                 <div className="mt-1">
-                  <input
-                    type="text"
-                    name="Street Address"
-                    id="Street Address"
-                    autoComplete="street-address"
+                  <Input
+                    type={"text"}
+                    name={"Street Address"}
+                    id={"Street Address"}
+                    autoComplete={"street-address"}
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"
+                    className={"py-2 px-3 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 focus:ring focus:ring-opacity-50 placeholder-gray-400 sm:text-sm"}
                   />
                 </div>
               </div>
               <div>
-                <button
-                  type="button"
+                <Button
                   onClick={jobSubmit}
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Post
-                </button>
+                  className={
+                    "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  }
+                  value="Post"
+                />
               </div>
             </div>
           </div>

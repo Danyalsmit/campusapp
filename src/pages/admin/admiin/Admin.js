@@ -37,8 +37,10 @@ function Admin() {
   return (
     <>
       <Way />
-      <Table companies={jobs} />
       <Dashboard student={userCateg} />
+      
+      <Table companies={jobs} />
+      
     </>
   );
 }

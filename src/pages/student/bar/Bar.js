@@ -15,7 +15,6 @@ function classNames(...classes) {
 }
 
 export function Bar() {
-  //   const location = useLocation("");
 
   return (
     <>

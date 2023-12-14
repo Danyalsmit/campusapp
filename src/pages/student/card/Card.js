@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Button from "../../../Components/button/Button";
 
-function Card({ category }) { 
+function Card({ category }) {
   const [jobs, setJobs] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
@@ -34,12 +35,12 @@ function Card({ category }) {
   const handleApply = (item) => {
     const userId = JSON.parse(localStorage.getItem("UserId"));
     const jobId = item._id; // Retrieve job ID directly from item
-  
+
     if (!appliedJobs.includes(jobId)) {
       const updatedAppliedJobs = [...appliedJobs, jobId];
       localStorage.setItem("appliedJobs", JSON.stringify(updatedAppliedJobs));
       setAppliedJobs(updatedAppliedJobs);
-  
+
       const jobData = {
         userId: userId,
         id: item._id,
@@ -48,9 +49,12 @@ function Card({ category }) {
         experience: item.Experience,
         streetAddress: item.StreetAddress,
       };
-      
+
       axios
-        .post("https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply", jobData)
+        .post(
+          "https://fair-cyan-abalone-gown.cyclic.app/api/apply/apply",
+          jobData
+        )
         .then((res) => {
           console.log("Applied successful!");
           Swal.fire({
@@ -78,7 +82,6 @@ function Card({ category }) {
       });
     }
   };
-  
 
   const openModal = (job) => {
     setSelectedJob(job);
@@ -107,20 +110,21 @@ function Card({ category }) {
                 </h3>
               </div>
               <div className="flex justify-center space-x-4 mt-2">
-                <button
+                <Button
                   onClick={() => openModal(item)}
-                  className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 focus:outline-none focus:ring focus:border-gray-300"
-                >
-                  Job Detail
-                </button>
+                  className={
+                    "bg-black text-white px-6 py-2 rounded hover:bg-gray-800 focus:outline-none focus:ring focus:border-gray-300"
+                  }
+                  value="Job Detail"
+                />
 
-                <button
+                <Button
                   onClick={() => handleApply(item)}
-                  className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+                  className={"bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"}
                   disabled={appliedJobs.includes(item._id)}
-                >
-                  {appliedJobs.includes(item._id) ? "Applied" : "Apply"}
-                </button>
+                
+                 value={appliedJobs.includes(item._id) ? "Applied" : "Apply"}
+                />
               </div>
             </div>
           );

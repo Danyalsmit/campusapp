@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { Link, useLocation ,useNavigate} from "react-router-dom";
+import Button from "../../../Components/button/Button";
 
 const navigation = [
   { name: "Admin", href: "/admin", current: true },
@@ -15,7 +16,6 @@ function classNames(...classes) {
 
 export function Way() {
   const navigate = useNavigate();
-
   const handleSignOut = () => {
     navigate("/");
   };
@@ -25,15 +25,14 @@ export function Way() {
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
-            <button
-              className="absolute right-0 flex items-right pb-2 pr-4 pt-2 bg-gray-900 text-white rounded-md px-2 py-2 mt-4 mb-4 text-sm font-medium"
-              style={{ marginRight: "20px", color: "white" }}
-              onClick={handleSignOut}
-             
-            >
-                Sign out
-            
-            </button>
+          <Button
+           style={{ marginRight: "20px", color: "white" }}
+           onClick={handleSignOut}
+           className={"absolute right-0 flex items-right pb-2 pr-4 pt-2 bg-gray-900 text-white rounded-md px-2 py-2 mt-4 mb-4 text-sm font-medium"}
+            value="Sign out"
+          
+          />
+          
 
             <div className="mx-auto max-w-md px-2 sm:px-6 lg:px-8"style={{ marginLeft: "20px" }}>
               <div className="relative flex h-16 items-center justify-between">
